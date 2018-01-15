@@ -1,19 +1,11 @@
 module Main where
 
 main :: IO ()
-main = interactLine (unlines . (map solve) . readInput)
-
-interactLine :: (String -> String) -> IO ()
-interactLine lineHandler = loop
-  where
-    loop = do
-      line <- getLine
-      case line of
-        "4" -> return ()
-        _   -> putStr (lineHandler line) >> loop
-
-readInput :: String -> [Integer]
-readInput   = (map read) . words
+main = do
+  line <- getLine
+  case line of
+    "4" -> return ()
+    _   -> (putStrLn . solve . read $ line) >> main
 
 solve :: Integer -> String
 solve x =
